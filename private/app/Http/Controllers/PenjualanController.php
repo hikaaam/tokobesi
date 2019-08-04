@@ -14,7 +14,8 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        //
+        $data = penjualan::all();
+        return view('tokobesi/penjualan/penjualan',compact('data'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PenjualanController extends Controller
      */
     public function create()
     {
-        //
+        return view('tokobesi/penjualan/penjualanbaru');
     }
 
     /**
@@ -35,7 +36,22 @@ class PenjualanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nota = 
+
+        $data = [
+            'nama' => $request->nama,
+            'harga_beli' => $request->harga,
+            'jumlah' => $request->jumlah,
+            'suplier' => $request->supplier,
+            'kategori' => $request->kategori,
+        ];
+         
+        
+       $pembelian = pembelian::create($data);
+        if ($pembelian)
+            return redirect()->back()->withSuccess('Sukses tambah data');
+        
+        return redirect()->back()->withError('Gagal tambah data');
     }
 
     /**
