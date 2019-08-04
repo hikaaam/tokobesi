@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/about', function () {
+    return view('tokobesi/welcome');
 });
+Route::resource('/', 'homesController');
+Route::resource('/pembelian', 'PembelianController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
