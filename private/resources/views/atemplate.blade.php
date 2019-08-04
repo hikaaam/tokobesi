@@ -81,31 +81,30 @@ MAIN SIDEBAR MENU
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
   
-            <p class="centered"><a href="{{ url('admin-vg', []) }}"><img src="{{ asset('private/images/logo.png') }}" class="img-circle" width="60"></a></p>
-            <h5 class="centered">Ilyas A Yusuf</h5>
+              <h5 class="centered">Selamat Datang</h5>
               
             <li class="mt">
-                <a  href="{{ url('admin-vg', []) }}">
+                <a  href="{{ url('/', []) }}">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="sub-menu">
-                <a href="{{ url('admin-vg/home', []) }}" >
+                <a href="{{ url('pembelian', []) }}" >
                     <i class="fa fa-cogs"></i>
-                    <span>Home Settings</span>
+                    <span>Pembelian</span>
                 </a>
             </li>
             <li class="sub-menu">
-                <a href="{{ url('admin-vg/post', []) }}" >
+                <a href="{{ url('penjualan', []) }}" >
                     <i class="fa fa-book"></i>
-                    <span>Article</span>
+                    <span>Penjualan</span>
                 </a>
             </li>
             <li class="sub-menu">
-                <a href="{{ url('admin-vg/cat', []) }}" >
+                <a href="{{ url('product', []) }}" >
                     <i class="fa fa-tasks"></i>
-                    <span>Categories</span>
+                    <span>Product</span>
                 </a>
             </li>
             <li class="sub-menu">

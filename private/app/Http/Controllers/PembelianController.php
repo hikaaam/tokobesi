@@ -14,7 +14,8 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        return view('tokobesi/');
+        $data = pembelian::all();
+        return view('tokobesi/pembelian/pembelian',compact('data'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PembelianController extends Controller
      */
     public function create()
     {
-        //
+       return view('tokobesi/pembelian/pembelianbaru');
     }
 
     /**
@@ -35,7 +36,23 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+       
+ 
+        $data = [
+            'nama' => $request->nama,
+            'harga_beli' => $request->harga,
+            'jumlah' => $request->jumlah,
+            'suplier' => $request->supplier,
+            'kategori' => $request->kategori,
+        ];
+         
+        
+       $pembelian = pembelian::create($data);
+        if ($pembelian)
+            return redirect()->back()->withSuccess('Sukses tambah data');
+        
+        return redirect()->back()->withError('Gagal tambah data');
     }
 
     /**
@@ -44,9 +61,14 @@ class PembelianController extends Controller
      * @param  \App\pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function show(pembelian $pembelian)
+    public function show($id)
     {
-        //
+      
+        $delete = pembelian::destroy($id);
+        if ($delete)
+        return redirect()->back()->withSuccess('Sukses hapus data');
+        
+        return redirect()->back()->withError('Gagal hapus data');
     }
 
     /**
@@ -55,9 +77,11 @@ class PembelianController extends Controller
      * @param  \App\pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function edit(pembelian $pembelian)
+    public function edit($id)
     {
-        //
+        $data = pembelian::find($id);
+    
+        return view('tokobesi/pembelian/pembelianedit',compact('data'));
     }
 
     /**
@@ -67,9 +91,18 @@ class PembelianController extends Controller
      * @param  \App\pembelian  $pembelian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pembelian $pembelian)
+    public function update(Request $request, $id)
     {
-        //
+         
+        
+       $article = pembelian::whereId($id)->update(['nama'=>$request->nama,
+       'harga_beli'=>$request->harga,'jumlah'=>$request->jumlah,
+       'suplier'=>$request->supplier,
+       'kategori'=>$request->kategori]);
+        if ($article)
+            return redirect()->back()->withSuccess('Sukses update data');
+        
+        return redirect()->back()->withError('Gagal update data');
     }
 
     /**

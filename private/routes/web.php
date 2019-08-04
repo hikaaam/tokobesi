@@ -16,6 +16,8 @@ Route::get('/about', function () {
 });
 Route::resource('/', 'homesController');
 Route::resource('/pembelian', 'PembelianController');
+Route::resource('/penjualan', 'PenjualanController');
+Route::resource('/product', 'ProductController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

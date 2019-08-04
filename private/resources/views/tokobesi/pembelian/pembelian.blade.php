@@ -23,7 +23,7 @@
 						  <div class="row">
 								<div class="col-md-12"> 
 									<div class="section-title">
-                                       <h2> <a style="font-size: 22px;"  href="{{ url('admin-vg/cat/create', []) }}"><i style="font-size: 28px;" class="fa fa-plus-square"></i> Create New Categories <i style="font-size: 28px;"  class="fa fa-plus-square"></i></a></h2>
+                                       <h2> <a style="font-size: 22px;"  href="{{ url('pembelian/create', []) }}"><i style="font-size: 28px;" class="fa fa-plus-square"></i> Tambah Pembelian <i style="font-size: 28px;"  class="fa fa-plus-square"></i></a></h2>
 										<hr>	
 									</div>
 								</div>
@@ -44,21 +44,27 @@
         <thead class="thead-dark">
             <tr>
                 <th>Id</th>
-                <th>Main Category</th>
-                <th>Sub Category</th>      
-                <th>Created At</th>
+                <th>Nama Barang</th>
+                <th>Kategori</th>
+                <th>suplier</th>
+                <th>harga</th>     
+                <th>jumlah</th>  
+                <th>Tanggal Masuk</th>
                 <th style="text-align: center" colspan="2">Tools</th>
             </tr>
         </thead> 
         <tbody>
-            @foreach ($post as $item)
+            @foreach ($data as $item)
             <tr>
                 <td>{{$item->id}}</td>
-                <td>{{$item->nama_kategori}}</td>
-                <td>{{$item->sub_kategori}}</td>
-                <td>{{$item->created_at->format('M d, Y')}}</td>
-                <td style="font-size:16px;text-align:left;left:20px;position:relative;" ><a href="{{ url('admin-vg/cat'.'/'.$item->id.'/edit', []) }}"><i style="color:blue;" class="fa fa-edit"> Edit</i></a></td>
-                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('admin-vg/cat', [$item->id]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>
+                <td>{{$item->nama}}</td>
+                <td>{{$item->kategori}}</td>
+                <td>{{$item->suplier}}</td>
+                <td>{{$item->harga_beli}}</td>
+                <td>{{$item->jumlah}}</td>
+                <td>{{$item->created_at->format('M, d Y')}}</td>
+                <td style="font-size:16px;text-align:left;left:20px;position:relative;" ><a href="{{ url('pembelian'.'/'.$item->id.'/edit', []) }}"><i style="color:blue;" class="fa fa-edit"> Edit</i></a></td>
+                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('pembelian', [$item->id]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>
             </tr>
             @endforeach
         </tbody>
