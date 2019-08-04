@@ -60,7 +60,7 @@
                 <td>{{$item->nama}}</td>
                 <td>{{$item->kategori}}</td>
                 <td>{{$item->suplier}}</td>
-                <td>{{$item->harga_beli}}</td>
+                <td>Rp.{{$item->harga_beli}}</td>
                 <td>{{$item->jumlah}}</td>
                 <td>{{$item->created_at->format('M, d Y')}}</td>
                 <td style="font-size:16px;text-align:left;left:20px;position:relative;" ><a href="{{ url('pembelian'.'/'.$item->id.'/edit', []) }}"><i style="color:blue;" class="fa fa-edit"> Edit</i></a></td>

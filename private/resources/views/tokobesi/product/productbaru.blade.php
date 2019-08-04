@@ -25,14 +25,13 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-    <form action="{{ url('pembelian', [$data->id]) }}" enctype="multipart/form-data" method="POST">
-            {{ csrf_field() }}
-            @method('PUT')
+    <form action="{{ url('pembelian', []) }}" enctype="multipart/form-data" method="POST">
+        {{ csrf_field() }}
             <div>
                 <h4><i class="fa fa-angle-right"></i> Nama Barang</h4>
                 <div class="row mt">
                     <div class="col-sm-6">
-                    <input type="text" class="form-control" value="{{$data->nama}}" name="nama" id="judul" placeholder="nama barang">
+                            <input type="text" class="form-control" name="nama" id="judul" placeholder="nama barang">
                             @if ($errors->has('nama'))
                             <p class="text-danger">{{ $errors->first('nama') }}</p>
                         @endif
@@ -44,7 +43,7 @@
                     <h4><i class="fa fa-angle-right"></i> Kategori</h4>
                     <div class="row mt">
                         <div class="col-sm-6">
-                                <input type="text" class="form-control" value="{{$data->kategori}}" name="kategori" id="judul" placeholder="Sub Category">
+                                <input type="text" class="form-control" name="kategori" id="judul" placeholder="Sub Category">
                                 @if ($errors->has('kategori'))
                                 <p class="text-danger">{{ $errors->first('kategori') }}</p>
                             @endif
@@ -56,7 +55,7 @@
                         <h4><i class="fa fa-angle-right"></i> Supplier</h4>
                         <div class="row mt">
                             <div class="col-sm-6">
-                                    <input type="text" class="form-control" value="{{$data->suplier}}" name="supplier" id="judul" placeholder="Supplier">
+                                    <input type="text" class="form-control" name="supplier" id="judul" placeholder="Supplier">
                                     @if ($errors->has('supplier'))
                                     <p class="text-danger">{{ $errors->first('supplier') }}</p>
                                 @endif
@@ -68,7 +67,7 @@
                             <h4><i class="fa fa-angle-right"></i> Harga</h4>
                             <div class="row mt">
                                 <div class="col-sm-6">
-                                        <input type="number" class="form-control" value="{{$data->harga_beli}}" name="harga" id="judul" placeholder="Harga Barang">
+                                        <input type="number" class="form-control" name="harga" id="judul" placeholder="Harga Barang">
                                         @if ($errors->has('harga'))
                                         <p class="text-danger">{{ $errors->first('harga') }}</p>
                                     @endif
@@ -80,7 +79,7 @@
                                 <h4><i class="fa fa-angle-right"></i> Jumlah Barang</h4>
                                 <div class="row mt">
                                     <div class="col-sm-6">
-                                            <input type="number" class="form-control" value="{{$data->jumlah}}" name="jumlah" id="judul" placeholder="Jumlah Barang">
+                                            <input type="number" class="form-control" name="jumlah" id="judul" placeholder="Jumlah Barang">
                                             @if ($errors->has('jumlah'))
                                             <p class="text-danger">{{ $errors->first('jumlah') }}</p>
                                         @endif

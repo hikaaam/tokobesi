@@ -1,7 +1,6 @@
 @extends('atemplate')
 @section('head')
-    
-
+  
 <script src="https://cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
 @endsection
 @section('main')
@@ -25,21 +24,10 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-    <form action="{{ url('pembelian', []) }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ url('penjualan', []) }}" enctype="multipart/form-data" method="POST">
         {{ csrf_field() }}
            
             <div>
-                    <h4><i class="fa fa-angle-right"></i> product</h4>
-                    <div class="row mt">
-                        <div class="col-sm-6">
-                                <input type="text" class="form-control" name="product" id="judul" placeholder="Nama Products">
-                                @if ($errors->has('product'))
-                                <p class="text-danger">{{ $errors->first('product') }}</p>
-                            @endif
-                            </div>
-                    </div>      
-                </div>
-                <br>
                 <div>
                         <h4><i class="fa fa-angle-right"></i> pelanggan</h4>
                         <div class="row mt">
@@ -52,18 +40,25 @@
                         </div>      
                     </div>
                     <br>
-                    <div>
-                            <h4><i class="fa fa-angle-right"></i> Harga</h4>
-                            <div class="row mt">
-                                <div class="col-sm-6">
-                                        <input type="number" class="form-control" name="harga" id="judul" placeholder="Harga Barang">
-                                        @if ($errors->has('harga'))
-                                        <p class="text-danger">{{ $errors->first('harga') }}</p>
-                                    @endif
-                                    </div>
-                            </div>      
+                    
+            <div>
+                    <h4><i class="fa fa-angle-right"></i> Nama product</h4>
+                    <div class="row mt">
+                        <div class="col-sm-6">
+                                <input list="products"  autocomplete="off" class="form-control" placeholder="double klik untuk lihat produk" id="product" name="product">
+                                <datalist id="products">
+                                        
+                                        @foreach ($data as $item)       
+                                     <option value="{{$item->nama}}">                                     
+                                         @endforeach
+                                </datalist>
+                                @if ($errors->has('product'))
+    <p class="text-danger">{{ $errors->first('product') }}</p>
+    @endif
                         </div>
-                        <br>
+                    </div>      
+                </div>
+                <br>
                         <div>
                                 <h4><i class="fa fa-angle-right"></i> Jumlah Barang</h4>
                                 <div class="row mt">

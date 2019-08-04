@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data = product::all();
+        return view('tokobesi/product/product',compact('data'));
     }
 
     /**
@@ -44,9 +45,14 @@ class ProductController extends Controller
      * @param  \App\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(product $product)
+    public function show($id)
     {
-        //
+        $article = product::destroy($id);
+        if ($article)
+            return redirect()->back()->withSuccess('Sukses update data');
+        
+        return redirect()->back()->withError('Gagal update data');
+
     }
 
     /**
@@ -55,9 +61,10 @@ class ProductController extends Controller
      * @param  \App\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(product $product)
+    public function edit($id)
     {
-        //
+        $data = product::find($id);
+        return view('tokobesi/product/productedit',compact('data'));
     }
 
     /**
@@ -67,9 +74,17 @@ class ProductController extends Controller
      * @param  \App\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $article = product::whereId($id)->update(['nama'=>$request->nama,
+        'harga'=>$request->harga,'jumlah'=>$request->jumlah,
+        'supplier'=>$request->supplier,
+        'kategori'=>$request->kategori]);
+         if ($article)
+             return redirect()->back()->withSuccess('Sukses update data');
+         
+         return redirect()->back()->withError('Gagal update data');
+ 
     }
 
     /**

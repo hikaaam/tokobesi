@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         
-        return view('/',compact('user'));
+        return view('tokobesi/index',compact('user'));
     }
 }

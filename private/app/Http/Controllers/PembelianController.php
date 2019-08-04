@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\pembelian;
+use App\product;
 use Illuminate\Http\Request;
 
 class PembelianController extends Controller
 {
+    
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,10 +58,16 @@ class PembelianController extends Controller
             'suplier' => $request->supplier,
             'kategori' => $request->kategori,
         ];
-         
-        
+        $data_product = [
+            'nama' => $request->nama,
+            'harga' => $request->harga,
+            'jumlah' => $request->jumlah,
+            'supplier' => $request->supplier,
+            'kategori' => $request->kategori,
+        ];
+       $product = product::create($data_product);
        $pembelian = pembelian::create($data);
-        if ($pembelian)
+        if ($pembelian && $product )
             return redirect()->back()->withSuccess('Sukses tambah data');
         
         return redirect()->back()->withError('Gagal tambah data');

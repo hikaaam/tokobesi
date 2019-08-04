@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\penjualan;
+use App\product;
 use Illuminate\Http\Request;
 
 class PenjualanController extends Controller
 {
+    
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +28,7 @@ class PenjualanController extends Controller
     {
         $data = penjualan::all();
         return view('tokobesi/penjualan/penjualan',compact('data'));
+ 
     }
 
     /**
@@ -25,7 +38,8 @@ class PenjualanController extends Controller
      */
     public function create()
     {
-        return view('tokobesi/penjualan/penjualanbaru');
+        $data = product::all();
+        return view('tokobesi/penjualan/penjualanbaru',compact('data'));
     }
 
     /**
@@ -36,22 +50,37 @@ class PenjualanController extends Controller
      */
     public function store(Request $request)
     {
-        $nota = 
+       
+        $nota =  time() . str_random(22) . '::user::' . $request->pelanggan;
+        $product = product::where('nama','=',$request->product)->get();
+        foreach($product as $item){
+            $harga = $item->harga;
+            $id = $item->id;
+            $jumlah = $item->jumlah;
+        }
+        $jumlah_sisa = $jumlah - $request->jumlah;
+        if($jumlah < $request->jumlah  ){
+            return redirect()->back()->withError('Jumlah Product Di Gudang kurang!!! tinggal : '.$jumlah .', jumlah product di beli : '
+        .$request->jumlah .'!!');     
+        }
+        else{
 
+        
         $data = [
-            'nama' => $request->nama,
-            'harga_beli' => $request->harga,
+            'produk' => $request->product,
+            'harga' => $harga,
             'jumlah' => $request->jumlah,
-            'suplier' => $request->supplier,
-            'kategori' => $request->kategori,
+            'pelanggan'=> $request->pelanggan,
+            'nota' => $nota
         ];
          
-        
-       $pembelian = pembelian::create($data);
-        if ($pembelian)
+        $updateproduct = product::whereId($id)->update(['jumlah'=>$jumlah_sisa]);
+       $pembelian = penjualan::create($data);
+        if ($pembelian && $updateproduct)
             return redirect()->back()->withSuccess('Sukses tambah data');
         
         return redirect()->back()->withError('Gagal tambah data');
+    }
     }
 
     /**
@@ -60,9 +89,10 @@ class PenjualanController extends Controller
      * @param  \App\penjualan  $penjualan
      * @return \Illuminate\Http\Response
      */
-    public function show(penjualan $penjualan)
+    public function show($id)
     {
-        //
+        $delete = penjualan::destroy($id);
+        return redirect()->back()->withSuccess('Sukses tambah data');
     }
 
     /**

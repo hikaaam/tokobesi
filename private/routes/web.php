@@ -21,3 +21,7 @@ Route::resource('/product', 'ProductController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout',function(){
+    Auth::logout();
+    return redirect()->back();
+});

@@ -60,7 +60,7 @@
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
       <!--logo start-->
-      <a href="#" class="logo"><b>VG DashBoard</b></a>
+      <a href="#" class="logo"><b>Toko Besi</b></a>
       <!--logo end-->
      
       </div>
@@ -91,25 +91,25 @@ MAIN SIDEBAR MENU
             </li>
             <li class="sub-menu">
                 <a href="{{ url('pembelian', []) }}" >
-                    <i class="fa fa-cogs"></i>
+                    <i class="fa fa-money"></i>
                     <span>Pembelian</span>
                 </a>
             </li>
             <li class="sub-menu">
                 <a href="{{ url('penjualan', []) }}" >
-                    <i class="fa fa-book"></i>
+                    <i class="fa fa-shopping-cart"></i>
                     <span>Penjualan</span>
                 </a>
             </li>
             <li class="sub-menu">
                 <a href="{{ url('product', []) }}" >
-                    <i class="fa fa-tasks"></i>
+                    <i class="fa fa-archive"></i>
                     <span>Product</span>
                 </a>
             </li>
             <li class="sub-menu">
                 <a href="{{ url('logout', []) }}" >
-                    <i class="fa fa-th"></i>
+                    <i class="fa fa-sign-out"></i>
                     <span>Log Out</span>
                 </a>
             </li>
