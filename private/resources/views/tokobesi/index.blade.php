@@ -40,7 +40,7 @@
                   		</div>
                   		<div class="col-md-3 col-sm-2 box0">
                   			<div class="box1">
-					  			<span><a class="{{ url('penjualan', []) }}"><i class="fa fa-shopping-cart"></i></a>
+					  			<span><a href="{{ url('penjualan', []) }}"><i class="fa fa-shopping-cart"></i></a>
 								  </span>  
 									<h3>penjualan</h3>
                   			</div>

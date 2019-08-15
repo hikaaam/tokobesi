@@ -75,6 +75,18 @@
                             </div>      
                         </div>
                         <br>
+                    <div>
+                            <h4><i class="fa fa-angle-right"></i> Harga Jual</h4>
+                            <div class="row mt">
+                                <div class="col-sm-6">
+                                        <input type="number" class="form-control" name="harga_jual" id="judul" placeholder="Harga Jual">
+                                        @if ($errors->has('Harga Jual'))
+                                        <p class="text-danger">{{ $errors->first('harga_jual') }}</p>
+                                    @endif
+                                    </div>
+                            </div>      
+                        </div>
+                        <br>
                         <div>
                                 <h4><i class="fa fa-angle-right"></i> Jumlah Barang</h4>
                                 <div class="row mt">

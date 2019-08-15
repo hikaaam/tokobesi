@@ -60,7 +60,7 @@
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
       <!--logo start-->
-      <a href="#" class="logo"><b>Toko Besi</b></a>
+      <a href="#" class="logo"><b>Toko Besi Mekar Jaya</b></a>
       <!--logo end-->
      
       </div>
@@ -81,7 +81,7 @@ MAIN SIDEBAR MENU
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
   
-              <h5 class="centered">Selamat Datang</h5>
+              <h5 class="centered">Selamat Datang Di Aplikasi Toko Besi Mekar Jaya</h5>
               
             <li class="mt">
                 <a  href="{{ url('/', []) }}">

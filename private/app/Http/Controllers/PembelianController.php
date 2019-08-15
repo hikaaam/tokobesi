@@ -54,15 +54,16 @@ class PembelianController extends Controller
         $data = [
             'nama' => $request->nama,
             'harga_beli' => $request->harga,
+            'harga_jual'=>$request->harga_jual,
             'jumlah' => $request->jumlah,
             'suplier' => $request->supplier,
             'kategori' => $request->kategori,
         ];
         $data_product = [
             'nama' => $request->nama,
-            'harga' => $request->harga,
+            'harga' => $request->harga_jual,
             'jumlah' => $request->jumlah,
-            'supplier' => $request->supplier,
+            'suplier' => $request->supplier,
             'kategori' => $request->kategori,
         ];
        $product = product::create($data_product);
