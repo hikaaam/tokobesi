@@ -14,10 +14,17 @@
 Route::get('/about', function () {
     return view('tokobesi/welcome');
 });
+Route::get('/invoice', function () {
+    return view('tokobesi/penjualan/invoice');
+});
+Route::get('/js', function () {
+    return view('tokobesi/penjualan/jstest');
+});
 Route::resource('/', 'homesController');
 Route::resource('/pembelian', 'PembelianController');
 Route::resource('/penjualan', 'PenjualanController');
 Route::resource('/product', 'ProductController');
+Route::resource('/cetak', 'cetakController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

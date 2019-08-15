@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\penjualan;
 use App\product;
+use PDF;
+use Session;
 use Illuminate\Http\Request;
 
 class PenjualanController extends Controller
@@ -26,9 +28,9 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $data = penjualan::all();
-        return view('tokobesi/penjualan/penjualan',compact('data'));
- 
+        $data = penjualan::groupBy('nota')->get();
+      return view('tokobesi/penjualan/penjualan',compact('data'));
+
     }
 
     /**
@@ -51,36 +53,40 @@ class PenjualanController extends Controller
     public function store(Request $request)
     {
        
-        $nota =  time() . str_random(22) . '::user::' . $request->pelanggan;
-        $product = product::where('nama','=',$request->product)->get();
+        $nota =  time() . str_random(22);
+        $prod = Session::get('dataproduct');
+        foreach($prod as $prods){
+
+        
+        $product = product::where('nama','=',$prods)->get();
         foreach($product as $item){
             $harga = $item->harga;
             $id = $item->id;
             $jumlah = $item->jumlah;
         }
-        $jumlah_sisa = $jumlah - $request->jumlah;
+        $jumlah_sisa = $jumlah - 1;
         if($jumlah < $request->jumlah  ){
-            return redirect()->back()->withError('Jumlah Product Di Gudang kurang!!! tinggal : '.$jumlah .', jumlah product di beli : '
+            return redirect()->back()->withError('Jumlah Product '.$prods.' Di Gudang kurang!!! tinggal : '.$jumlah .', jumlah product di beli : '
         .$request->jumlah .'!!');     
         }
         else{
 
         
         $data = [
-            'produk' => $request->product,
+            'produk' => $prods,
             'harga' => $harga,
-            'jumlah' => $request->jumlah,
+            'jumlah' => '1',
             'pelanggan'=> $request->pelanggan,
             'nota' => $nota
         ];
          
         $updateproduct = product::whereId($id)->update(['jumlah'=>$jumlah_sisa]);
        $pembelian = penjualan::create($data);
-        if ($pembelian && $updateproduct)
-            return redirect()->back()->withSuccess('Sukses tambah data');
-        
-        return redirect()->back()->withError('Gagal tambah data');
-    }
+
+    
+    }  
+}
+return redirect()->action('PenjualanController@create')->withSuccess('Sukses tambah data');
     }
 
     /**
@@ -91,8 +97,8 @@ class PenjualanController extends Controller
      */
     public function show($id)
     {
-        $delete = penjualan::destroy($id);
-        return redirect()->back()->withSuccess('Sukses tambah data');
+        $data = penjualan::where('nota', '=' ,$id)->groupBy('produk')->get();
+        return view('tokobesi/penjualan/invoice',compact('data'));
     }
 
     /**
@@ -128,4 +134,5 @@ class PenjualanController extends Controller
     {
         //
     }
+
 }

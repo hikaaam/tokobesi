@@ -45,13 +45,9 @@
             <tr>
                 <th>Id</th>
                 <th>Nota</th>
-                <th>nama produk</th>
                 <th>pelanggan</th>
-                <th>harga</th>     
-                <th>jumlah</th> 
-                <th>Total Harga</th> 
                 <th>Tanggal Keluar</th>
-                <th style="text-align: center" >Tools</th>
+                <th colspan="2" style="text-align: center" >Tools</th>
             </tr>
         </thead> 
         <tbody>
@@ -59,13 +55,10 @@
             <tr>
                 <td>{{$item->id}}</td>
                 <td>{{$item->nota}}</td>
-                <td>{{$item->produk}}</td>
                 <td>{{$item->pelanggan}}</td>
-                <td>Rp. {{$item->harga}}</td>
-                <td>{{$item->jumlah}}</td>
-                <td>Rp. {{$item->harga*$item->jumlah}}</td>
                 <td>{{$item->created_at->format('M, d Y')}}</td>
-                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('penjualan', [$item->id]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>
+                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a href="{{ url('penjualan', [$item->nota]) }}"><i style="color:blue;" class="fa fa-eye"> Lihat / Cetak Nota </i></a></td>
+                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('penjualan', [$item->nota]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>
             </tr>
             @endforeach
         </tbody>
