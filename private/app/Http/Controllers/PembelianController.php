@@ -49,12 +49,32 @@ class PembelianController extends Controller
     public function store(Request $request)
     {
       
-       
- 
+       $product = product::where('nama','=',$request->nama)->count();
+       if($product == 1){
+             $data = [
+            'nama' => $request->nama,
+            'harga_beli' => $request->harga,
+            'jumlah' => $request->jumlah,
+            'suplier' => $request->supplier,
+            'kategori' => $request->kategori,
+        ];
+        $data_product = [
+            'nama' => $request->nama,
+            'harga' => $request->harga_jual,
+            'jumlah' => $request->jumlah,
+            'suplier' => $request->supplier,
+            'kategori' => $request->kategori,
+        ];
+       $product = product::where('nama','=',$request->nama)->update($data_product);
+       $pembelian = pembelian::create($data);
+        if ($pembelian && $product ){
+            return redirect()->back()->withSuccess('Sukses tambah data');
+        }
+       }
+       else{
         $data = [
             'nama' => $request->nama,
             'harga_beli' => $request->harga,
-            'harga_jual'=>$request->harga_jual,
             'jumlah' => $request->jumlah,
             'suplier' => $request->supplier,
             'kategori' => $request->kategori,
@@ -71,7 +91,7 @@ class PembelianController extends Controller
         if ($pembelian && $product )
             return redirect()->back()->withSuccess('Sukses tambah data');
         
-        return redirect()->back()->withError('Gagal tambah data');
+    }
     }
 
     /**

@@ -49,7 +49,7 @@ class cetakController extends Controller
         
             $data = penjualan::where('nota', '=' ,$id)->get();
             $pdf = PDF::loadview('invoicepdf',['data'=>$data]);
-            return $pdf->download('invoicepdf');
+            return $pdf->download('invoicepdf'.$id.'.pdf');
         //   return view('invoicepdf',compact('data'));
       
     }

@@ -20,11 +20,15 @@ Route::get('/invoice', function () {
 Route::get('/js', function () {
     return view('tokobesi/penjualan/jstest');
 });
+Route::get('/laporanpdf', function () {
+    return view('tokobesi/laporan/laporanpdf');
+});
 Route::resource('/', 'homesController');
 Route::resource('/pembelian', 'PembelianController');
 Route::resource('/penjualan', 'PenjualanController');
 Route::resource('/product', 'ProductController');
 Route::resource('/cetak', 'cetakController');
+Route::resource('/laporan', 'LaporanController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

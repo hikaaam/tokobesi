@@ -80,7 +80,7 @@
 			@foreach ($data as $col)
 			<tr>	
 				<td>{{$col->produk}}</td>
-				@php( $jumlah = DB::table('penjualan')->where('produk','=',$col->produk)->count())
+				@php( $jumlah = DB::table('penjualan')->where('produk','=',$col->produk)->where('nota','=',$nota)->count())
 				<td>{{$jumlah}}</td>
 				<td>{{$col->harga}}</td>
 				<td>{{$jumlah*$col->harga}}</td>	

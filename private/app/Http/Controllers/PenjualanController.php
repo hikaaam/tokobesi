@@ -55,9 +55,38 @@ class PenjualanController extends Controller
        
         $nota =  time() . str_random(22);
         $prod = Session::get('dataproduct');
-        foreach($prod as $prods){
-
+        if(count($prod) <= 1 ){
+            $item = product::where('nama','=',$prod[0])->get();
         
+             
+                    $harga = $item[0]->harga;
+                    $id = $item[0]->id;
+                    $jumlah = $item[0]->jumlah;
+                
+                $jumlah_sisa = $jumlah - 1;
+                if($jumlah < 1  ){
+                    return redirect()->action('PenjualanController@create')->withError('Jumlah Product  Di Gudang kurang!!!');     
+                }
+                else{
+        
+                
+                $data = [
+                    'produk' => $prod[0],
+                    'harga' => $harga,
+                    'jumlah' => '1',
+                    'pelanggan'=> $request->pelanggan,
+                    'nota' => $nota
+                ];
+               
+                            
+                $updateproduct = product::whereId($id)->update(['jumlah'=>$jumlah_sisa]);
+                $pembelian = penjualan::create($data);
+                 
+            }
+         }
+
+        else{  
+        foreach($prod as $prods){
         $product = product::where('nama','=',$prods)->get();
         foreach($product as $item){
             $harga = $item->harga;
@@ -65,9 +94,9 @@ class PenjualanController extends Controller
             $jumlah = $item->jumlah;
         }
         $jumlah_sisa = $jumlah - 1;
-        if($jumlah < $request->jumlah  ){
-            return redirect()->back()->withError('Jumlah Product '.$prods.' Di Gudang kurang!!! tinggal : '.$jumlah .', jumlah product di beli : '
-        .$request->jumlah .'!!');     
+        if($jumlah < 1  ){
+         
+            return redirect()->action('PenjualanController@create')->withError('Jumlah Product di gudang Kurang!!');     
         }
         else{
 
@@ -82,9 +111,9 @@ class PenjualanController extends Controller
          
         $updateproduct = product::whereId($id)->update(['jumlah'=>$jumlah_sisa]);
        $pembelian = penjualan::create($data);
-
     
     }  
+}
 }
 return redirect()->action('PenjualanController@create')->withSuccess('Sukses tambah data');
     }

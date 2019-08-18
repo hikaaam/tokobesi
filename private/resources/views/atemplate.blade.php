@@ -108,6 +108,12 @@ MAIN SIDEBAR MENU
                 </a>
             </li>
             <li class="sub-menu">
+                <a href="{{ url('laporan', []) }}" >
+                    <i class="fa fa-print"></i>
+                    <span>Laporan Penjualan</span>
+                </a>
+            </li>
+            <li class="sub-menu">
                 <a href="{{ url('logout', []) }}" >
                     <i class="fa fa-sign-out"></i>
                     <span>Log Out</span>
