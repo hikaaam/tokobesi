@@ -29,6 +29,7 @@ Route::resource('/penjualan', 'PenjualanController');
 Route::resource('/product', 'ProductController');
 Route::resource('/cetak', 'cetakController');
 Route::resource('/laporan', 'LaporanController');
+Route::resource('/del', 'deleteController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

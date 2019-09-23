@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\penjualan;
 
 use Illuminate\Http\Request;
-use namamodel;
-class delete extends Controller
+
+class deleteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -45,11 +46,14 @@ class delete extends Controller
      */
     public function show($id)
     {
-    $delete = namamodel::destroy($id);
-    if($delete)
-    {
-        return redirectBack->with("success");
-    }
+        $delete = penjualan::destroy($id);
+        if($delete)
+        {
+            return redirect()->action('PenjualanController@index')->withError('Berhasil Di hapus!!!');  
+        }
+        else{
+            return redirect()->action('PenjualanController@index')->withError('Berhasil Di hapus!!!');  
+        }
     }
 
     /**

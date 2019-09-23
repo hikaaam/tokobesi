@@ -58,7 +58,7 @@
                 <td>{{$item->pelanggan}}</td>
                 <td>{{$item->created_at->format('M, d Y')}}</td>
                 <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a href="{{ url('penjualan', [$item->nota]) }}"><i style="color:blue;" class="fa fa-eye"> Lihat / Cetak Nota </i></a></td>
-                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('penjualan', [$item->nota]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>
+                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('del', [$item->id]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>
             </tr>
             @endforeach
         </tbody>
