@@ -22,7 +22,7 @@
     </style>
 </head>
 <body onload="window.print();">
-    <h1 style="font-family:monospace;">Laporan Penjualan Toko Besi Mekar Karya</h1>
+    <h1 style="font-family:monospace;">Laporan Penjualan Toko Besi Mekar Jaya</h1>
     <br>
     <h4 style="font-family:monospace;">Tanggal : {{$dari.' - '.$sampai}}</h4>
     <br>

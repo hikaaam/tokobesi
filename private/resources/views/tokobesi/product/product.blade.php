@@ -47,7 +47,7 @@
                 <th>Nama Barang</th>
                 <th>Kategori</th>
                 <th>suplier</th>
-                <th>harga</th>     
+                <th>harga jual</th>     
                 <th>jumlah</th>  
                 <th>Tanggal Masuk</th>
                 <th style="text-align: center" colspan="2">Tools</th>
@@ -60,7 +60,7 @@
                 <td>{{$item->nama}}</td>
                 <td>{{$item->kategori}}</td>
                 <td>{{$item->suplier}}</td>
-                <td>Rp.{{$item->harga}}</td>
+                <td>Rp.{{$item->harga_jual}}</td>
                 <td>{{$item->jumlah}}</td>
                 <td>{{$item->created_at->format('M, d Y')}}</td>
                 <td style="font-size:16px;text-align:left;left:20px;position:relative;" ><a href="{{ url('product'.'/'.$item->id.'/edit', []) }}"><i style="color:blue;" class="fa fa-edit"> Edit</i></a></td>

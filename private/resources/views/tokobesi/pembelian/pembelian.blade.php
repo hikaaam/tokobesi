@@ -48,7 +48,7 @@
                 <th>Kategori</th>
                 <th>suplier</th>
                 <th>harga</th>
-                <th>Harga Jual</th>    
+                <th>harga jual</th>    
                 <th>jumlah</th>  
                 <th>Tanggal Masuk</th>
                 <th style="text-align: center" colspan="2">Tools</th>

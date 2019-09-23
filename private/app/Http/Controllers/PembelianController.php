@@ -54,15 +54,15 @@ class PembelianController extends Controller
              $data = [
             'nama' => $request->nama,
             'harga_beli' => $request->harga,
+            'harga_jual'=> $request->harga_jual,
             'jumlah' => $request->jumlah,
-            'suplier' => $request->supplier,
+            'suplier' => $request->suplier,
             'kategori' => $request->kategori,
         ];
         $data_product = [
             'nama' => $request->nama,
-            'harga' => $request->harga_jual,
-            'jumlah' => $request->jumlah,
-            'suplier' => $request->supplier,
+            'harga_jual' => $request->harga_jual,
+            'jumlah' => $request->jumlah,   
             'kategori' => $request->kategori,
         ];
        $product = product::where('nama','=',$request->nama)->update($data_product);
@@ -75,15 +75,16 @@ class PembelianController extends Controller
         $data = [
             'nama' => $request->nama,
             'harga_beli' => $request->harga,
+            'harga_jual'=> $request->harga_jual,
             'jumlah' => $request->jumlah,
-            'suplier' => $request->supplier,
+            'suplier' => $request->suplier,
             'kategori' => $request->kategori,
         ];
         $data_product = [
             'nama' => $request->nama,
-            'harga' => $request->harga_jual,
+            'harga_jual' => $request->harga_jual,
             'jumlah' => $request->jumlah,
-            'suplier' => $request->supplier,
+            'suplier' => $request->suplier,
             'kategori' => $request->kategori,
         ];
        $product = product::create($data_product);
@@ -135,8 +136,8 @@ class PembelianController extends Controller
          
         
        $article = pembelian::whereId($id)->update(['nama'=>$request->nama,
-       'harga_beli'=>$request->harga,'jumlah'=>$request->jumlah,
-       'suplier'=>$request->supplier,
+       'harga_beli'=>$request->harga,'harga_jual'=>$request->harga_jual,'jumlah'=>$request->jumlah,
+       'suplier'=>$request->suplier,
        'kategori'=>$request->kategori]);
         if ($article)
             return redirect()->back()->withSuccess('Sukses update data');

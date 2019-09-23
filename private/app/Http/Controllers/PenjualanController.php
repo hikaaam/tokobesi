@@ -59,7 +59,7 @@ class PenjualanController extends Controller
             $item = product::where('nama','=',$prod[0])->get();
         
              
-                    $harga = $item[0]->harga;
+                    $harga_jual = $item[0]->harga_jual;
                     $id = $item[0]->id;
                     $jumlah = $item[0]->jumlah;
                 
@@ -72,7 +72,7 @@ class PenjualanController extends Controller
                 
                 $data = [
                     'produk' => $prod[0],
-                    'harga' => $harga,
+                    'harga_jual' => $harga_jual,
                     'jumlah' => '1',
                     'pelanggan'=> $request->pelanggan,
                     'nota' => $nota
@@ -89,7 +89,7 @@ class PenjualanController extends Controller
         foreach($prod as $prods){
         $product = product::where('nama','=',$prods)->get();
         foreach($product as $item){
-            $harga = $item->harga;
+            $harga_jual = $item->harga_jual;
             $id = $item->id;
             $jumlah = $item->jumlah;
         }
@@ -103,7 +103,7 @@ class PenjualanController extends Controller
         
         $data = [
             'produk' => $prods,
-            'harga' => $harga,
+            'harga_jual' => $harga_jual,
             'jumlah' => '1',
             'pelanggan'=> $request->pelanggan,
             'nota' => $nota
@@ -129,7 +129,7 @@ return redirect()->action('PenjualanController@create')->withSuccess('Sukses tam
         $data = penjualan::where('nota', '=' ,$id)->groupBy('produk')->get();
         return view('tokobesi/penjualan/invoice',compact('data'));
     }
-
+ 
     /**
      * Show the form for editing the specified resource.
      *

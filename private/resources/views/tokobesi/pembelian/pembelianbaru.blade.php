@@ -55,9 +55,9 @@
                         <h4><i class="fa fa-angle-right"></i> Supplier</h4>
                         <div class="row mt">
                             <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="supplier" id="judul" placeholder="Supplier">
-                                    @if ($errors->has('supplier'))
-                                    <p class="text-danger">{{ $errors->first('supplier') }}</p>
+                                    <input type="text" class="form-control" name="suplier" id="judul" placeholder="Supplier">
+                                    @if ($errors->has('suplier'))
+                                    <p class="text-danger">{{ $errors->first('suplier') }}</p>
                                 @endif
                                 </div>
                         </div>      
@@ -76,11 +76,11 @@
                         </div>
                         <br>
                     <div>
-                            <h4><i class="fa fa-angle-right"></i> Harga Jual</h4>
+                            <h4><i class="fa fa-angle-right"></i> harga jual</h4>
                             <div class="row mt">
                                 <div class="col-sm-6">
                                         <input type="number" class="form-control" name="harga_jual" id="judul" placeholder="Harga Jual">
-                                        @if ($errors->has('Harga Jual'))
+                                        @if ($errors->has('harga_jual'))
                                         <p class="text-danger">{{ $errors->first('harga_jual') }}</p>
                                     @endif
                                     </div>

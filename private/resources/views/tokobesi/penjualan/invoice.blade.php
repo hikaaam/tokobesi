@@ -51,12 +51,12 @@
 	<div id="fromto">
 		<div id="from">
 			<p>
-				<strong>Toko Besi blabla</strong><br>
-				Alamat kamu jl apa <br>
-				52413 Tegal <br><br>
-				Telp : 08xx xxxx xxxx <br>
-				Email: contact@website.com <br>
-				Web: www.website.com
+				<strong>Toko Besi Mekar Jaya</strong><br>
+				Jln Cut Nyak Dien No 21 rt 05/05 <br>
+				Kalisapu <br><br>
+				Telp : 0856 4028 7897 <br>
+				Email: mekarjaya@website.com <br>
+				Web: www.mekarjaya.com
 			</p>
 		</div>
 		<div id="to">
@@ -82,9 +82,9 @@
 				<td>{{$col->produk}}</td>
 				@php( $jumlah = DB::table('penjualan')->where('produk','=',$col->produk)->where('nota','=',$nota)->count())
 				<td>{{$jumlah}}</td>
-				<td>{{$col->harga}}</td>
-				<td>{{$jumlah*$col->harga}}</td>	
-				@php(array_push($total,$jumlah*$col->harga))
+				<td>{{$col->harga_jual}}</td>
+				<td>{{$jumlah*$col->harga_jual}}</td>	
+				@php(array_push($total,$jumlah*$col->harga_jual))
 				
 			</tr>
 			@endforeach
@@ -116,7 +116,7 @@
 
 	<div id="footer">
 		<p>Toko Besi Mekar Jaya <br>
-			phone: 08xxxxxxxx</p>
+			phone: 085640287897</p>
 	</div>
 </div>
 </div>

@@ -63,9 +63,9 @@
 				<td>{{$col->produk}}</td>
 				@php( $jumlah = DB::table('penjualan')->where('produk','=',$col->produk)->where('nota','=',$nota)->count())
 				<td>{{$jumlah}}</td>
-				<td>{{$col->harga}}</td>
-				<td>{{$jumlah*$col->harga}}</td>	
-				@php(array_push($total,$jumlah*$col->harga))
+				<td>{{$col->harga_jual}}</td>
+				<td>{{$jumlah*$col->harga_jual}}</td>	
+				@php(array_push($total,$jumlah*$col->hargajual))
 				
 			</tr>
 			@endforeach
