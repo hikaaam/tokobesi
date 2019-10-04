@@ -65,7 +65,7 @@
 				<td>{{$jumlah}}</td>
 				<td>{{$col->harga_jual}}</td>
 				<td>{{$jumlah*$col->harga_jual}}</td>	
-				@php(array_push($total,$jumlah*$col->hargajual))
+				@php(array_push($total,$jumlah*$col->harga_jual))
 				
 			</tr>
 			@endforeach
