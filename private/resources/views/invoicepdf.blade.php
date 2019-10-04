@@ -54,7 +54,7 @@
 				<th>Nama Barang</th>
 				<th>Jumlah</th>
 				<th>Harga</th>
-				<th>Total Harga</th>
+				<th>Total</th>
 			</tr>
 			@php($total = [])
 		

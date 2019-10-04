@@ -127,7 +127,7 @@ return redirect()->action('PenjualanController@create')->withSuccess('Sukses tam
     public function show($id)
     {
         $data = penjualan::where('nota', '=' ,$id)->groupBy('produk')->get();
-        return view('tokobesi/penjualan/invoice',compact('data'));
+        return view('tokobesi/penjualan/penjualanbaru2',compact('data'));
     }
  
     /**
