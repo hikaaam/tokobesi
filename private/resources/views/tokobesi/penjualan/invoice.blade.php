@@ -31,6 +31,7 @@
 	@php($nota = $item->nota)
 	@php($tanggal = $item->created_at->format('d/m/Y'))
 	@php($nama = $item->pelanggan)
+	@php($bayar = $item->bayar)
 @endforeach
 
 <section class="wrapper site-min-height">
@@ -73,7 +74,7 @@
 				<th>Nama Barang</th>
 				<th>Jumlah</th>
 				<th>Harga</th>
-				<th>Total Harga</th>
+				<th>Total</th>
 			</tr>
 			@php($total = [])
 		
@@ -82,9 +83,9 @@
 				<td>{{$col->produk}}</td>
 				@php( $jumlah = DB::table('penjualan')->where('produk','=',$col->produk)->where('nota','=',$nota)->count())
 				<td>{{$jumlah}}</td>
-				<td>{{$col->harga_jual}}</td>
-				<td>{{$jumlah*$col->harga_jual}}</td>	
-				@php(array_push($total,$jumlah*$col->harga_jual))
+				<td>{{'Rp.'.$col->harga}}</td>
+			<td>{{'Rp.'}}{{$jumlah*$col->harga}}</td>	
+				@php(array_push($total,$jumlah*$col->harga))
 				
 			</tr>
 			@endforeach
@@ -108,8 +109,16 @@
 				</tr>
 				<tr>
 					<td>Total</td>
-					<td>{{array_sum($total)}}</td>
+					<td>{{'Rp.'.array_sum($total)}}</td>
 				</tr>
+				<tr>
+					<td>Bayar</td>
+				<td>{{'Rp.'.$bayar}}</td>
+				</tr>
+				<tr>
+						<td>Kembali</td>
+					<td>{{'Rp.'}}{{$bayar-(array_sum($total))}}</td>
+					</tr>
 			</table>
 		</div>
 	</div>

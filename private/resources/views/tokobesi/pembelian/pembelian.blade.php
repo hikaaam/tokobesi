@@ -43,13 +43,8 @@
     <table id="table" class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>Id</th>
-                <th>Nama Barang</th>
-                <th>Kategori</th>
+                <th>Nota</th>
                 <th>suplier</th>
-                <th>harga</th>
-                <th>harga jual</th>    
-                <th>jumlah</th>  
                 <th>Tanggal Masuk</th>
                 <th style="text-align: center" colspan="2">Tools</th>
             </tr>
@@ -57,16 +52,11 @@
         <tbody>
             @foreach ($data as $item)
             <tr>
-                <td>{{$item->id}}</td>
-                <td>{{$item->nama}}</td>
-                <td>{{$item->kategori}}</td>
+                <td>{{$item->nota}}</td>
                 <td>{{$item->suplier}}</td>
-                <td>Rp.{{$item->harga_beli}}</td>
-                <td>Rp.{{$item->harga_jual}}</td>
-                <td>{{$item->jumlah}}</td>
                 <td>{{$item->created_at->format('M, d Y')}}</td>
-                <td style="font-size:16px;text-align:left;left:20px;position:relative;" ><a href="{{ url('pembelian'.'/'.$item->id.'/edit', []) }}"><i style="color:blue;" class="fa fa-edit"> Edit</i></a></td>
-                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('pembelian', [$item->id]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>
+                <td style="font-size:16px;text-align:left;left:20px;position:relative;" ><a href="{{ url('pembelian'.'/'.$item->nota.'/edit', []) }}"><i style="color:blue;" class="fa fa-eye"> Lihat</i></a></td>
+                <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('pembelian', [$item->nota]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>
             </tr>
             @endforeach
         </tbody>

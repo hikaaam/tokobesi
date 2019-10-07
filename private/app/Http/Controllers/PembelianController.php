@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\pembelian;
 use App\product;
+use Session;
 use Illuminate\Http\Request;
 
 class PembelianController extends Controller
@@ -26,8 +27,8 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        $data = pembelian::all();
-        return view('tokobesi/pembelian/pembelian',compact('data'));
+        $data = pembelian::groupBy('nota')->get();
+      return view('tokobesi/pembelian/pembelian',compact('data'));
     }
 
     /**
@@ -37,7 +38,7 @@ class PembelianController extends Controller
      */
     public function create()
     {
-       return view('tokobesi/pembelian/pembelianbaru');
+       return view('tokobesi/pembelian/onepage');
     }
 
     /**
@@ -48,28 +49,30 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-      
-       $product = product::where('nama','=',$request->nama)->count();
-       if($product == 1){
+      $suplier = Session::get('supplier');
+      $supp = $suplier[0];
+      $note = Session::get('beli');
+      $nota = $note[0];
+       $product = product::where('nama',$request->nama)->count();
+       
+       if($product >=1){
              $data = [
             'nama' => $request->nama,
             'harga_beli' => $request->harga,
             'harga_jual'=> $request->harga_jual,
             'jumlah' => $request->jumlah,
-            'suplier' => $request->suplier,
+            'suplier' => $supp,
+            'nota'=> $nota,
             'kategori' => $request->kategori,
         ];
-        $data_product = [
-            'nama' => $request->nama,
-            'harga_jual' => $request->harga_jual,
-            'jumlah' => $request->jumlah,   
-            'kategori' => $request->kategori,
-        ];
-       $product = product::where('nama','=',$request->nama)->update($data_product);
-       $pembelian = pembelian::create($data);
-        if ($pembelian && $product ){
-            return redirect()->back()->withSuccess('Sukses tambah data');
-        }
+        $produk = product::where('nama',$request->nama)->get();
+        $jumlah = $produk[0]['jumlah']+$request->jumlah;
+        $data_product = 
+        ['jumlah'=>$jumlah, 'harga' => $request->harga_jual];
+       
+       product::where('nama',$request->nama)->update($data_product);
+       pembelian::create($data);
+       return redirect()->back();
        }
        else{
         $data = [
@@ -77,20 +80,21 @@ class PembelianController extends Controller
             'harga_beli' => $request->harga,
             'harga_jual'=> $request->harga_jual,
             'jumlah' => $request->jumlah,
-            'suplier' => $request->suplier,
+            'suplier' => $supp,
+            'nota'=> $nota,
             'kategori' => $request->kategori,
         ];
         $data_product = [
             'nama' => $request->nama,
-            'harga_jual' => $request->harga_jual,
+            'harga' => $request->harga_jual,
             'jumlah' => $request->jumlah,
-            'suplier' => $request->suplier,
+            'suplier' => $supp,
             'kategori' => $request->kategori,
         ];
        $product = product::create($data_product);
        $pembelian = pembelian::create($data);
         if ($pembelian && $product )
-            return redirect()->back()->withSuccess('Sukses tambah data');
+            return redirect()->back();
         
     }
     }
@@ -104,7 +108,7 @@ class PembelianController extends Controller
     public function show($id)
     {
       
-        $delete = pembelian::destroy($id);
+        $delete = pembelian::where('nota',$id)->delete();
         if ($delete)
         return redirect()->back()->withSuccess('Sukses hapus data');
         
@@ -119,9 +123,9 @@ class PembelianController extends Controller
      */
     public function edit($id)
     {
-        $data = pembelian::find($id);
-    
-        return view('tokobesi/pembelian/pembelianedit',compact('data'));
+     $data1 = pembelian::where('nota',$id)->get();
+      return view('tokobesi/pembelian/pembelianedit',compact('data1'));
+ 
     }
 
     /**

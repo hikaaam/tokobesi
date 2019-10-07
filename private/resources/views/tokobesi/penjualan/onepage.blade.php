@@ -2,14 +2,14 @@
 @php(Session::forget('order'))
 @php(Session::forget('product')) --}}
 <script>
-console.log("is work!");
-    function showinput(){   
-        document.getElementById('del').style.display = 'block';
-        document.getElementById('formproduct').style.display = 'block';
-        document.getElementById('add').style.display = 'none';
+    function bayar(){   
+        
+        document.getElementById('formbayar').style.display = 'block';
+        document.getElementById('formproduct').style.display = 'none';
     }
-    function hideinput(){
-        document.getElementById('formnama').style.display = 'none';
+    function batal(){
+        document.getElementById('formproduct').style.display = 'block';
+        document.getElementById('formbayar').style.display = 'none';
     }
 </script>  
 @extends('atemplate')
@@ -68,41 +68,48 @@ console.log("is work!");
             <thead class="thead-dark">
                 <th>Nama Barang</th>
                 <th>Qty</th>
+                <th>Tool</th>
                 <th>Price</th>
                 <th>Total</th>
             </thead>
             <tbody>
-                @if(Session::has('product'))
-                @php($products = Session::get('product'))
-                @php($i=0)
-                @php($total = [])
-                @foreach ($products['product'] as $item) 
+              
                    
-                <tr>
-                    @php($data1 = App\product::where('nama',$item)->get())
+              
+                    @php($data1 = App\penjualancache::where('nota',$nomor)->get())
+                    
                     @foreach ($data1 as $prod)
-                    <td>{{$prod->nama}}</td>
-                    <td>{{$products['jumlah'][$i]}}</td>
-                        @php($qty = $products['jumlah'][$i])
+                <tr>
+                    <td>{{$prod->produk}}</td>
+                    <td>{{$prod->jumlah}}</td>
+                    @php($qty = $prod->jumlah)
+                    <td><a href="{{ action('PenjualancacheController@show',[$prod->id]) }}"><i style="font-size:20px;color:orange;" class="fa fa-minus"></i></a>
+                        <a href="{{ url('cachepenjualan/'.$prod->id.'/edit') }}"><i style="margin-left:10px;font-size:20px;color:green;" class="fa fa-plus"></i></a>
+                        <a href="{{  url('pelanggan',[$prod->id]) }}"><i style="margin-left:10px;font-size:20px;color:red;" class="fa fa-times"></i></a>
+                    </td>
                     <td>{{$prod->harga}}</td>
                     <td>{{$qty*$prod->harga}}</td>
                     @php(array_push($total,$qty*$prod->harga))
-                    @endforeach
                 </tr>
-                @php($i=$i+1)
-                @endforeach
-                @endif
+                    @endforeach
+
+            
             </tbody>
             <tr>
                     <td></td>
                     <td></td>
+                    <td></td>
                     <td>Jumlah</td>
                     <td>{{array_sum($total)}}</td>
+                    @php(Session::forget('total'))
+                    @php(Session::push('total', $total))
                 </tr>
-        </table>
-        
+        </table>  
         <thead>
-            <th><button type="button" class="btn btn-primary"><i style="font-size:20px;" class="fa fa-save"></i> SIMPAN</button></th>
+                <th><button onclick="bayar()" type="button" class="btn btn-danger"><i style="font-size:20px;" class="fa fa-money"></i> BAYAR</button></th>
+        </thead>
+        <thead>
+                <th><a href="{{ url('pelanggan', []) }}" type="button" class="btn btn-primary"><i style="font-size:20px;" class="fa fa-save"></i> SIMPAN</a></th>
         </thead>
     </div>
     <div class="col-md-4">
@@ -111,9 +118,7 @@ console.log("is work!");
         <hr>
     <div id="formnama" style="@if(Session::has('nama')){!!'display:none'!!}@endif">
         <form  action="{{ url('penjualan/create', []) }}" enctype="multipart/form-data" method="GET">
-            {{ csrf_field() }}
-                <div  id="formproduct">
-                  
+            {{ csrf_field() }} 
                     <div class="row mt">
                         <div class="col-sm-8">
                           <input class="form-control" autocomplete="off" type="text" placeholder="Nama Pelanggan" name="nama">
@@ -123,15 +128,12 @@ console.log("is work!");
                             <input type="submit" value="Simpan Nama" class="btn btn-info">                  
                         </div>
                     </div>  
-                </div>  
+                </div>
             </form>   
-        </div>
     </div>
-        <form action="{{ url('penjualan/create', []) }}" enctype="multipart/form-data" method="GET">
-            {{ csrf_field() }}
-                <div  id="formproduct">
-                <div>
-                  
+    <div id="formproduct" style="@if(Session::has('nama')){!!'display:block'!!}@else {!! 'display:none' !!} @endif">
+        <form action="{{ url('cachepenjualan', []) }}" enctype="multipart/form-data" method="POST">
+            {{ csrf_field() }}           
                     <div class="row mt">
                         <div class="col-sm-12">
                                 <input  list="products"  autocomplete="off" class="form-control" placeholder="double klik untuk lihat produk" id="product" name="product">
@@ -141,7 +143,6 @@ console.log("is work!");
                                      <option value="{{$item->nama}}">                                     
                                          @endforeach
                                 </datalist>
-
                         </div>
                         <br>
                         <br>
@@ -154,9 +155,32 @@ console.log("is work!");
                             <input type="submit" value="Simpan Product" class="btn btn-info">                  
                         </div>
                     </div>  
-                </div>  
+                </div>
          
             </form>   
+    </div>
+    <div id="formbayar" style="display:none">
+            <form  action="{{ url('penjualan', []) }}" enctype="multipart/form-data" method="POST">
+                {{ csrf_field() }}
+                  
+                      
+                        <div class="row mt">
+                            <div class="col-sm-8">
+                              <input class="form-control" autocomplete="off" type="number" required placeholder="Jumlah Uang" name="uang">
+                            </div>
+                            <div class="col-sm-1" style="position:relative;right:10px;">
+                                    <button onclick="batal()" type="button" class="btn btn-danger"><i style="font-size:20px" class="fa fa-times"></i></button>  
+                                </div>  
+                        <div class="col-sm-3">
+                            <div style="margin-left:2px">
+                                <input type="submit" value="Simpan" class="btn btn-info">           
+                            </div>
+                        </div>  
+                     
+                           </div>   
+                </form>   
+            </div>
+        </div>
     </div>
     </div>
             </section><!--/wrapper -->

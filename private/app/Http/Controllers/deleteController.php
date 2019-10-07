@@ -46,7 +46,7 @@ class deleteController extends Controller
      */
     public function show($id)
     {
-        $delete = penjualan::destroy($id);
+        $delete = penjualan::where('nota',$id)->delete();
         if($delete)
         {
             return redirect()->action('PenjualanController@index')->withError('Berhasil Di hapus!!!');  

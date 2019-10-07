@@ -28,6 +28,7 @@
             @php($nota = $item->nota)
             @php($tanggal = $item->created_at->format('d/m/Y'))
             @php($nama = $item->pelanggan)
+            @php($status = $item->status)
         @endforeach
 <div class="container">
         <div>
@@ -36,6 +37,9 @@
         <div>
         <h5>Nama Pelanggan : {{$nama}}</h5>
         </div>
+        <div>
+           <h5>Status : @if($status==1){{'di bayar'}} @else {{'belum dibayar'}} @endif</h5>
+         </div>
         @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -62,11 +66,11 @@
                 @foreach ($data as $col)
                 <tr>	
                     <td>{{$col->produk}}</td>
-                    @php( $jumlah = DB::table('penjualan')->where('produk','=',$col->produk)->where('nota','=',$nota)->count())
+                    @php( $jumlah = $col->jumlah);
                     <td>{{$jumlah}}</td>
-                    <td>{{$col->harga_jual}}</td>
-                    <td>{{$jumlah*$col->harga_jual}}</td>	
-                    @php(array_push($total,$jumlah*$col->harga_jual))
+                    <td>{{$col->harga}}</td>
+                    <td>{{$jumlah*$col->harga}}</td>	
+                    @php(array_push($total,$jumlah*$col->harga))
                     
                 </tr>
                 @endforeach

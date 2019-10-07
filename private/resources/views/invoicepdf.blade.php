@@ -12,6 +12,7 @@
 	@php($nota = $item->nota)
 	@php($tanggal = $item->created_at->format('d/m/Y'))
 	@php($nama = $item->pelanggan)
+	@php($bayar = $item->bayar)
 @endforeach
 
 <div id="content">		
@@ -26,14 +27,14 @@
 
 	<div id="fromto">
 		<div id="from">
-			<p>
-				<strong>Toko Besi blabla</strong><br>
-				Alamat kamu jl apa <br>
-				52413 Tegal <br><br>
-				Telp : 08xx xxxx xxxx <br>
-				Email: contact@website.com <br>
-				Web: www.website.com
-			</p>
+				<p>
+						<strong>Toko Besi Mekar Jaya</strong><br>
+						Jln Cut Nyak Dien No 21 rt 05/05 <br>
+						Kalisapu <br><br>
+						Telp : 0856 4028 7897 <br>
+						Email: mekarjaya@website.com <br>
+						Web: www.mekarjaya.com
+					</p>
 		</div>
 		<div id="to">
 				
@@ -61,11 +62,11 @@
 			@foreach ($data as $col)
 			<tr>	
 				<td>{{$col->produk}}</td>
-				@php( $jumlah = DB::table('penjualan')->where('produk','=',$col->produk)->where('nota','=',$nota)->count())
+				@php( $jumlah =$col->jumlah)
 				<td>{{$jumlah}}</td>
-				<td>{{$col->harga_jual}}</td>
-				<td>{{$jumlah*$col->harga_jual}}</td>	
-				@php(array_push($total,$jumlah*$col->harga_jual))
+				<td>{{'Rp.'.$col->harga}}</td>
+				<td>{{'Rp.'}}{{$jumlah*$col->harga}}</td>	
+				@php(array_push($total,$jumlah*$col->harga))
 				
 			</tr>
 			@endforeach
@@ -89,15 +90,23 @@
 				</tr>
 				<tr>
 					<td>Total</td>
-					<td>{{array_sum($total)}}</td>
+					<td>{{'Rp.'.array_sum($total)}}</td>
 				</tr>
+				<tr>
+						<td>Bayar</td>
+					<td>{{'Rp.'.$bayar}}</td>
+					</tr>
+					<tr>
+							<td>Kembali</td>
+						<td>{{'Rp.'}}{{$bayar-(array_sum($total))}}</td>
+						</tr>
 			</table>
 		</div>
 	</div>
 
 	<div id="footer">
-		<p>Toko Besi Mekar Jaya <br>
-			phone: 08xxxxxxxx</p>
+			<p>Toko Besi Mekar Jaya <br>
+				phone: 085640287897</p>
 	</div>
 </div>
 </div>

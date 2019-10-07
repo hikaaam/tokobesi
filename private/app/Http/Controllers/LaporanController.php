@@ -37,7 +37,7 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = laporan::selectRaw('nota,pelanggan,created_at, sum(harga_jual) as total')->
+        $data = laporan::selectRaw('nota,pelanggan,created_at, sum(harga) as total')->
         whereRaw('created_at <= ? + interval 1 day',[$request->sampai])->where('created_at','>=',$request->dari)->groupBy('nota')->get();
         $dari = $request->dari;
         $sampai = $request->sampai;
@@ -79,7 +79,7 @@ class LaporanController extends Controller
     {
         $dari = $request->dari;
         $sampai = $request->sampai;
-        $data = laporan::selectRaw('nota,pelanggan,created_at, sum(harga_jual) as total')->
+        $data = laporan::selectRaw('nota,pelanggan,created_at, sum(harga) as total')->
         whereRaw('created_at <= ? + interval 1 day',[$sampai])->where('created_at','>=',$dari)->groupBy('nota')->get();
    
         // $pdf = PDF::loadview('tokobesi.laporan.laporanpdf',['data'=>$data,'dari'=>$dari,'sampai'=>$sampai]);

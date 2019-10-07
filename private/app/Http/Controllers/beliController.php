@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\pelanggan;
-use App\penjualancache;
-use App\product;
-use Session;
 use Illuminate\Http\Request;
+use Session;
 
-class PelangganController extends Controller
+class beliController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +14,9 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        Session::forget('order');
-        Session::forget('nama');
-        Session::forget('total');
-        return redirect()->to('penjualan/create');
+        Session::forget('beli');
+        Session::forget('supplier');
+        return redirect()->to('pembelian/create');
     }
 
     /**
@@ -47,28 +43,21 @@ class PelangganController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\pelanggan  $pelanggan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {    $data = penjualancache::find($id);
-        $product = $data->produk;
-        $data1 = product::where('nama',$product)->get();
-        $jumlah = $data->jumlah;
-        $jumlah_prod = $data1[0]['jumlah']+$jumlah;
-            product::where('nama',$product)->update(['jumlah'=>$jumlah_prod]);
-            penjualancache::destroy($id);
-            return redirect()->back();
- 
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\pelanggan  $pelanggan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(pelanggan $pelanggan)
+    public function edit($id)
     {
         //
     }
@@ -77,10 +66,10 @@ class PelangganController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\pelanggan  $pelanggan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pelanggan $pelanggan)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -88,10 +77,10 @@ class PelangganController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\pelanggan  $pelanggan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pelanggan $pelanggan)
+    public function destroy($id)
     {
         //
     }
