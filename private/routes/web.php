@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/about', function () {
-    return view('tokobesi/welcome');
+Route::get('/server', function () {
+    return view('tokobesi/penjualan/server');
 });
 Route::get('/invoice', function () {
     return view('tokobesi/penjualan/invoice');
 });
 Route::get('/js', function () {
-    return view('tokobesi/penjualan/jstest');
+    return view('tokobesi/penjualan/onepage');
 });
 Route::get('/laporanpdf', function () {
     return view('tokobesi/laporan/laporanpdf');

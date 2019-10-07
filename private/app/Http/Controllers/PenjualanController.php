@@ -41,7 +41,7 @@ class PenjualanController extends Controller
     public function create()
     {
         $data = product::all();
-        return view('tokobesi/penjualan/penjualanbaru',compact('data'));
+        return view('tokobesi/penjualan/onepage',compact('data'));
     }
 
     /**
