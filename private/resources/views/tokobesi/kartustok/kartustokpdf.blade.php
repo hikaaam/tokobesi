@@ -21,29 +21,33 @@
    }
     </style>
 </head>
-<body onload="window.print();">
-    <h1 style="font-family:monospace;">Laporan Penjualan Toko Besi Mekar Jaya</h1>
+<body style="margin-left: auto; margin-right: auto; width:35em" onload="window.print();">
+    <h1 style="font-family:monospace;">Kartu Stok Toko Besi Mekar Jaya</h1>
+    <hr>
     <br>
-    <h4 style="font-family:monospace;">Tanggal : {{$dari.' - '.$sampai}}</h4>
+    <h4 style="font-family:monospace;">Tanggal : {{date('M, d Y')}}</h4>
     <br>
-    <table>
+    <table style="width:100%">
             <thead >        
-                <th>Nota Penjualan</th>
-                <th>Nama Pembeli</th>
-                <th>Status</th>
-                <th>Tanggal Beli</th>
+                <th>Nama Produk</th>
+                <th>Jumlah</th>
+                <th>Tanggal</th>
             </thead>
  
-        @foreach ($data as $item)
+    
         <tr>
             
-            <td>{{$item->nota}}</td>
-            <td>{{$item->pelanggan}}</td>
-            <td>@if($item->status==1){{'di bayar'}} @else {{'Belum di bayar'}} @endif</td>
-            <td>{{$item->created_at->format('d M Y')}}</td>
+            <td>{{$data->nama}}</td>
+            <td>{{$jumlah}}</td>
+            <td>{{$data->created_at->format('d M Y')}}</td>
         </tr>
-        @endforeach
+    
     </tbody>
         </table>
+       
+           <p>
+              keterangan : {{$keterangan}}
+           </p>
+       
 </body>
 </html>

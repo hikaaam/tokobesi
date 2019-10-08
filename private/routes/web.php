@@ -33,6 +33,7 @@ Route::resource('/laporan', 'LaporanController');
 Route::resource('/del', 'deleteController');
 Route::resource('/beli', 'beliController');
 Route::resource('/cachepenjualan', 'PenjualancacheController');
+Route::resource('/kartustok', 'KartustokController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

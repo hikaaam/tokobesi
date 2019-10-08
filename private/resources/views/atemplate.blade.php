@@ -114,6 +114,12 @@ MAIN SIDEBAR MENU
                 </a>
             </li>
             <li class="sub-menu">
+                    <a href="{{ url('kartustok', []) }}" >
+                        <i class="fa fa-print"></i>
+                        <span>Kartu Stok</span>
+                    </a>
+                </li>
+            <li class="sub-menu">
                 <a href="{{ url('logout', []) }}" >
                     <i class="fa fa-sign-out"></i>
                     <span>Log Out</span>

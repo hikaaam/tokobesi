@@ -91,6 +91,7 @@ class PembelianController extends Controller
             'harga' => $request->harga_jual,
             'jumlah' => $request->jumlah,
             'suplier' => $supp,
+            'satuan' => $request->satuan,
             'kategori' => $request->kategori,
         ];
        $product = product::create($data_product);

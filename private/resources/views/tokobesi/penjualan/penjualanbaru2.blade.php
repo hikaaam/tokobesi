@@ -55,8 +55,9 @@
         <thead class="thead-dark">
             <tr>
                 <th>Nama Barang</th>
-                <th>Qty</th>
-                <th>Price</th>
+                <th>Jumlah</th>
+                <th>Satuan</th>
+                <th>Harga</th>
                 <th>Total</th>
             </tr>
         </thead> 
@@ -68,6 +69,7 @@
                     <td>{{$col->produk}}</td>
                     @php( $jumlah = $col->jumlah);
                     <td>{{$jumlah}}</td>
+                    <td>{{$col->satuan}}</td>
                     <td>{{$col->harga}}</td>
                     <td>{{$jumlah*$col->harga}}</td>	
                     @php(array_push($total,$jumlah*$col->harga))
@@ -75,6 +77,7 @@
                 </tr>
                 @endforeach
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td>Jumlah</td>

@@ -46,6 +46,7 @@ class PenjualancacheController extends Controller
 
         $data = product::where('nama',$product)->get();
         $jumlah_product_digudang = $data[0]['jumlah'];
+        $satuan = $data[0]['satuan'];
         $harga = $data[0]['harga'];
         $cache = [
            'nota' => $nota,
@@ -53,6 +54,7 @@ class PenjualancacheController extends Controller
            'harga' => $harga,
            'pelanggan' => $pelanggan,
            'jumlah' => $jumlah,
+           'satuan' => $satuan
         ];
         $jumlah_sisa = $jumlah_product_digudang-$jumlah;
         if($jumlah<=$jumlah_product_digudang){

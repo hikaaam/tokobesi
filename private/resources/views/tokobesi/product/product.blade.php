@@ -49,6 +49,7 @@
                 <th>suplier</th>
                 <th>harga jual</th>     
                 <th>jumlah</th>  
+                <th>satuan</th>
                 <th>Tanggal Masuk</th>
                 <th style="text-align: center" colspan="2">Tools</th>
             </tr>
@@ -62,6 +63,7 @@
                 <td>{{$item->suplier}}</td>
                 <td>Rp.{{$item->harga}}</td>
                 <td>{{$item->jumlah}}</td>
+                <td>{{$item->satuan}}</td>
                 <td>{{$item->created_at->format('M, d Y')}}</td>
                 <td style="font-size:16px;text-align:left;left:20px;position:relative;" ><a href="{{ url('product'.'/'.$item->id.'/edit', []) }}"><i style="color:blue;" class="fa fa-edit"> Edit</i></a></td>
                 <td style="font-size:16px;text-align:right;right:20px;position:relative;" ><a onclick="return confirm('Are you sure?')" href="{{ url('product', [$item->id]) }}"><i style="color:red;" class="fa fa-trash"> Delete </i></a></td>

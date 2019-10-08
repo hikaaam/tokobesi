@@ -87,6 +87,18 @@
                                 </div>      
                             </div>
                             <br>
+                            <div>
+                                <h4><i class="fa fa-angle-right"></i> Satuan</h4>
+                                <div class="row mt">
+                                    <div class="col-sm-6">
+                                            <input type="text" autocomplete="off" class="form-control" name="satuan" id="judul" placeholder="Satuan">
+                                            @if ($errors->has('satuan'))
+                                            <p class="text-danger">{{ $errors->first('satuan') }}</p>
+                                        @endif
+                                        </div>
+                                </div>      
+                            </div>
+                            <br>
            
             <div>
                 <div class="row mt">

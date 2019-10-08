@@ -67,8 +67,9 @@
         <table id="table" class="table table-hover">
             <thead class="thead-dark">
                 <th>Nama Barang</th>
-                <th>Qty</th>
+                <th>Jumlah</th>
                 <th>Tool</th>
+                <th>Satuan</th>
                 <th>Price</th>
                 <th>Total</th>
             </thead>
@@ -87,6 +88,7 @@
                         <a href="{{ url('cachepenjualan/'.$prod->id.'/edit') }}"><i style="margin-left:10px;font-size:20px;color:green;" class="fa fa-plus"></i></a>
                         <a href="{{  url('pelanggan',[$prod->id]) }}"><i style="margin-left:10px;font-size:20px;color:red;" class="fa fa-times"></i></a>
                     </td>
+                     <td>{{$prod->satuan}}</td>
                     <td>{{$prod->harga}}</td>
                     <td>{{$qty*$prod->harga}}</td>
                     @php(array_push($total,$qty*$prod->harga))
@@ -96,6 +98,7 @@
             
             </tbody>
             <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -135,6 +138,7 @@
         <form action="{{ url('cachepenjualan', []) }}" enctype="multipart/form-data" method="POST">
             {{ csrf_field() }}           
                     <div class="row mt">
+                        <div class="col-sm-12"><label >Nama Product</label></div>
                         <div class="col-sm-12">
                                 <input  list="products"  autocomplete="off" class="form-control" placeholder="double klik untuk lihat produk" id="product" name="product">
                                 <datalist id="products">
@@ -146,9 +150,11 @@
                         </div>
                         <br>
                         <br>
+                        <div style="margin-top:10px" class="col-sm-12"><label >Jumlah Product</label></div>
                         <div class="col-sm-8">
                                 <input  class="form-control" type="number" required  name="jumlah" placeholder="Jumlah product">
                         </div>
+                        
                   
                     <div class="col-sm-4">
                         <div style="position:relative;right:10px;">

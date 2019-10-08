@@ -45,7 +45,7 @@
            
             <th>Nota Penjualan</th>
             <th>Nama Pembeli</th>
-            <th>Total Pembelian</th>
+            <th>Status</th>
             <th>Tanggal Beli</th>
         </thead>
 <tbody>
@@ -53,7 +53,7 @@
     <tr>
         <td>{{$item->nota}}</td>
         <td>{{$item->pelanggan}}</td>
-        <td>{{$item->total}}</td>
+    <td>@if($item->status==1){{'di bayar'}} @else {{'Belum di bayar'}} @endif</td>
         <td>{{$item->created_at->format('d M Y')}}</td>
     </tr>
     @endforeach

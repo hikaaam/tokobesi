@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\kartustok;
 use App\product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class KartustokController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $data = product::all();
-        return view('tokobesi/product/product',compact('data'));
+        return view('tokobesi/kartustok/kartustok',compact('data'));
     }
 
     /**
@@ -42,59 +43,53 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\product  $product
+     * @param  \App\kartustok  $kartustok
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(kartustok $kartustok)
     {
-        $article = product::destroy($id);
-        if ($article)
-            return redirect()->back()->withSuccess('Sukses update data');
-        
-        return redirect()->back()->withError('Gagal update data');
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\product  $product
+     * @param  \App\kartustok  $kartustok
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(kartustok $kartustok)
     {
-        $data = product::find($id);
-        return view('tokobesi/product/productedit',compact('data'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\product  $product
+     * @param  \App\kartustok  $kartustok
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $article = product::whereId($id)->update(['nama'=>$request->nama,
-        'harga'=>$request->harga,'jumlah'=>$request->jumlah,
-        'suplier'=>$request->suplier,
-        'satuan'=>$request->satuan,
-        'kategori'=>$request->kategori]);
-         if ($article)
-             return redirect()->back()->withSuccess('Sukses update data');
-         
-         return redirect()->back()->withError('Gagal update data');
- 
+    
+        $data = product::find($id);
+        $jumlah = $request->jumlah;
+        $keterangan = $request->keterangan;
+        // $pdf = PDF::loadview('tokobesi.laporan.laporanpdf',['data'=>$data,'dari'=>$dari,'sampai'=>$sampai]);
+        // return $pdf->download('LaporanPenjualanFrom'.$dari.'To'.$sampai.'.pdf');
+        kartustok::create(['nama'=>$data->nama,'jumlah'=>$jumlah,'keterangan'=>$keterangan]);
+        product::find($id)->update(['jumlah'=>$jumlah]);
+       return view('tokobesi.kartustok.kartustokpdf',compact('data','jumlah','keterangan'));
+    // return $data;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\product  $product
+     * @param  \App\kartustok  $kartustok
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy(kartustok $kartustok)
     {
         //
     }
