@@ -65,8 +65,10 @@
                     <th>Nama Barang</th>
                     <th>kategori</th>
                     <th>harga</th>
-                    <th>jumlah</th>
                     <th>harga jual</th>
+                    
+                    <th>jumlah</th>
+                    <th>satuan</th>
                 </thead>
                 <tbody>
                   
@@ -80,8 +82,10 @@
                         <td>{{$prod->kategori}}</td>
                         
                         <td>{{$prod->harga_beli}}</td>
-                        <td>{{$prod->jumlah}}</td>
                         <td>{{$prod->harga_jual}}</td>
+                        <td>{{$prod->jumlah}}</td>
+                        <td>{{$prod->satuan}}</td>
+                      
                       
                     </tr>
                         @endforeach
@@ -128,10 +132,15 @@
                             <div  id="margin" class="col-sm-12">
                                     <input  class="form-control" type="number" required  name="jumlah" placeholder="Jumlah product">
                             </div>
+                            <label class="col-sm-12">Satuan</label>
+                            <div  id="margin" class="col-sm-12">
+                                    <input  class="form-control" type="text" autocomplete="off" required  name="satuan" placeholder="Satuan">
+                            </div>
                             <label class="col-sm-12">Harga</label>
                             <div  id="margin" class="col-sm-12">
                                     <input  class="form-control" type="number" required  name="harga" placeholder="Harga product">
                             </div>
+                          
                             <label class="col-sm-12">Harga Jual</label>
                             <div  id="margin" class="col-sm-12">
                                     <input  class="form-control" type="number" required  name="harga_jual" placeholder="Harga Jual product">

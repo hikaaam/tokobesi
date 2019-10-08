@@ -62,6 +62,7 @@ class PembelianController extends Controller
             'harga_jual'=> $request->harga_jual,
             'jumlah' => $request->jumlah,
             'suplier' => $supp,
+            'satuan' => $request->satuan,
             'nota'=> $nota,
             'kategori' => $request->kategori,
         ];
@@ -81,6 +82,7 @@ class PembelianController extends Controller
             'harga_jual'=> $request->harga_jual,
             'jumlah' => $request->jumlah,
             'suplier' => $supp,
+            'satuan' => $request->satuan,
             'nota'=> $nota,
             'kategori' => $request->kategori,
         ];
@@ -142,6 +144,7 @@ class PembelianController extends Controller
        $article = pembelian::whereId($id)->update(['nama'=>$request->nama,
        'harga_beli'=>$request->harga,'harga_jual'=>$request->harga_jual,'jumlah'=>$request->jumlah,
        'suplier'=>$request->suplier,
+       'satuan' => $request->satuan,
        'kategori'=>$request->kategori]);
         if ($article)
             return redirect()->back()->withSuccess('Sukses update data');

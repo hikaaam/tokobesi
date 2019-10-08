@@ -52,8 +52,9 @@
                     <th>Nama Barang</th>
                     <th>kategori</th>
                     <th>harga</th>
-                    <th>jumlah</th>
                     <th>harga jual</th>
+                    <th>jumlah</th>
+                   <th>satuan</th>
                 </thead>
                 <tbody>
                   
@@ -65,8 +66,10 @@
                         <td>{{$prod->nama}}</td>
                         <td>{{$prod->kategori}}</td>
                         <td>{{$prod->harga_beli}}</td>
-                        <td>{{$prod->jumlah}}</td>
                         <td>{{$prod->harga_jual}}</td>
+                        <td>{{$prod->jumlah}}</td>
+                    <td>{{$prod->satuan}}</td>
+                        
                       
                     </tr>
                         @endforeach

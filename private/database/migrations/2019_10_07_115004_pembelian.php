@@ -18,6 +18,7 @@ class Pembelian extends Migration
             $table->string('nota',80);
             $table->string('nama',80);
             $table->string('kategori',50);
+            $table->string('satuan',50); 
             $table->string('suplier',50);
             $table->unsignedInteger('harga_beli')->length(30);
             $table->unsignedInteger('harga_jual')->length(30);
