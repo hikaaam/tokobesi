@@ -68,9 +68,9 @@
                             <h4><i class="fa fa-angle-right"></i> Harga</h4>
                             <div class="row mt">
                                 <div class="col-sm-6">
-                                        <input type="number" class="form-control" value="{{$data->harga_jual}}" name="harga_jual" id="judul" placeholder="Harga Barang">
-                                        @if ($errors->has('harga_jual'))
-                                        <p class="text-danger">{{ $errors->first('harga_jual') }}</p>
+                                        <input type="number" class="form-control" value="{{$data->harga}}" name="harga" id="judul" placeholder="Harga Barang">
+                                        @if ($errors->has('harga'))
+                                        <p class="text-danger">{{ $errors->first('harga') }}</p>
                                     @endif
                                     </div>
                             </div>      

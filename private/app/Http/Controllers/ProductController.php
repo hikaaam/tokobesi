@@ -77,7 +77,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $article = product::whereId($id)->update(['nama'=>$request->nama,
-        'harga_jual'=>$request->harga_jual,'jumlah'=>$request->jumlah,
+        'harga'=>$request->harga,'jumlah'=>$request->jumlah,
         'suplier'=>$request->suplier,
         'kategori'=>$request->kategori]);
          if ($article)
