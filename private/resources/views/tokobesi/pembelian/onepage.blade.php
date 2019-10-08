@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-md-8">
             <h5>Nomor Nota : {{$nomor}}</h5>
-                <h5>Nama Pelanggan : {{$nama}}</h5>
+                <h5>Nama Supplier : {{$nama}}</h5>
             <table id="table" class="table table-hover">
                 <thead class="thead-dark">
                     <th>Nama Barang</th>
